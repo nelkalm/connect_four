@@ -36,12 +36,15 @@ interactable_row = ['|', ' ', player_symbol, ' ']
 # Create column labels
 create_column_labels(num_columns)
 
-# Iterate 6x for lids to create the structure of the board
-for _ in range(1, num_columns):
+
+# Create Board:
+def create_board(top_edge, non_interactable_row, interactable_row, num_columns):
+    for _ in range(1, num_columns):
+        create_container_structure(top_edge, num_columns)
+        create_container_structure(non_interactable_row, num_columns)
+        create_container_structure(interactable_row, num_columns)
+        create_container_structure(non_interactable_row, num_columns)
     create_container_structure(top_edge, num_columns)
-    create_container_structure(non_interactable_row, num_columns)
-    create_container_structure(interactable_row, num_columns)
-    create_container_structure(non_interactable_row, num_columns)
-create_container_structure(top_edge, num_columns)
 
 
+create_board(top_edge, non_interactable_row, interactable_row, num_columns)
