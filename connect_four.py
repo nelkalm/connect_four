@@ -1,7 +1,9 @@
 # Initialize Player1 and Player2 symbols
-player_symbol = 'X'
+player_symbol = ' '
 player_symbol_real = [' ', 'X', '0']
 num_columns = 7
+num_rows = 6
+numbers = [i for i in range(1, num_columns + 1)]
 
 
 # Create column labels
@@ -33,12 +35,10 @@ top_edge = ['+', '-' * 3]
 non_interactable_row = ['|', ' ' * 3]
 interactable_row = ['|', ' ', player_symbol, ' ']
 
-# Create column labels
-create_column_labels(num_columns)
-
 
 # Create Board:
 def create_board(top_edge, non_interactable_row, interactable_row, num_columns):
+    # Create board
     for _ in range(1, num_columns):
         create_container_structure(top_edge, num_columns)
         create_container_structure(non_interactable_row, num_columns)
@@ -47,4 +47,38 @@ def create_board(top_edge, non_interactable_row, interactable_row, num_columns):
     create_container_structure(top_edge, num_columns)
 
 
+# Create a non-outputting board in the back-end
+# Example:
+# [
+#     [[], [], [], [], [], [], []],
+#     [[], [], [], [], [], [], []],
+#     [[], [], [], [], [], [], []],
+#     [[], [], [], [], [], [], []],
+#     [[], [], [], [], [], [], []],
+#     [[], [], [], [], [], [], []],
+# ]
+def create_nonoutput(num_columns, num_rows):
+    board = list()
+    for i in range(1, num_rows + 1):
+        board.append([])
+    for row in board:
+        for i in range(1, num_columns + 1):
+            row.append([])
+    print(board)
+
+
+# Playing a player piece in column
+player_column_choice = 5
+player_piece_choice = 'W'
+print("Trying to place an " + player_piece_choice + " in column " + str(player_column_choice))
+if player_column_choice not in numbers:
+    print("Make sure to pick a column between 1 and " + str(num_columns) + " that is not full")
+if player_piece_choice not in player_symbol_real:
+    print("Make sure to use either an 'X' or an 'O' as your piece")
+else:
+    print(f"Placed an {player_piece_choice} in column {player_column_choice}")
+print()
+create_column_labels(num_columns)
 create_board(top_edge, non_interactable_row, interactable_row, num_columns)
+
+create_nonoutput(7, 6)
