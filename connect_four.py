@@ -64,7 +64,35 @@ def create_nonoutput(num_columns, num_rows):
     for row in board:
         for i in range(1, num_columns + 1):
             row.append([])
-    print(board)
+    return board
+
+
+current_board = create_nonoutput(num_columns, num_rows)
+
+
+def play_piece(column_choice, player_piece, board):
+    row_number = len(board)
+    for row in range(row_number - 1, -1, -1):
+        if not board[row][column_choice - 1]:
+            board[row][column_choice - 1] = player_piece
+            print(f"Placed an {player_piece} in column {row}")
+            break
+        else:
+            continue
+    return board
+
+
+def is_column_full(board):
+    location_list = list()
+    for row in board:
+        index = row.index('X')
+        location_list.append(index)
+    first_location = location_list[0]
+    for number in location_list:
+        if first_location != number:
+            return False
+        else:
+            return True
 
 
 # Playing a player piece in column
@@ -81,4 +109,11 @@ print()
 create_column_labels(num_columns)
 create_board(top_edge, non_interactable_row, interactable_row, num_columns)
 
-create_nonoutput(7, 6)
+# print(create_nonoutput(7, 6))
+print(current_board)
+print(play_piece(5, 'X', current_board))
+print(play_piece(5, 'X', current_board))
+print(play_piece(5, '0', current_board))
+print(play_piece(5, 'X', current_board))
+print(play_piece(5, 'X', current_board))
+print(play_piece(5, 'X', current_board))
