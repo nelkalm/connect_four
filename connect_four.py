@@ -96,15 +96,17 @@ def no_available_moves(board):
         print("No available moves.")
 
 
-def horizontal_vertical_win(player_piece, board):
-    match = 0
+def horizontal_win(player_piece, board):
+    win_char = ''
     for row in board:
         for column in row:
-            if column == player_piece:
-                match += 1
-            if match == 4:
-                break
-    print("you won!")
+            if player_piece in column:
+                win_char += player_piece
+            else:
+                win_char += ' '
+    if (player_piece * 4) in win_char:
+        print("You won!")
+
 
 
 # Playing a player piece in column
@@ -126,14 +128,14 @@ create_board(top_edge, non_interactable_row, interactable_row, num_columns)
 current_test_board = [
     [[], [], [], [], [], [], []],
     [[], [], [], [], [], [], []],
-    [[], ['X'], [], [], [], [], []],
-    [[], ['X'], [], [], [], [], []],
-    [[], ['X'], [], [], [], [], []],
-    [[], ['X'], [], [], [], [], []],
+    [[], [], [], [], [], [], []],
+    [[], [], [], [], [], [], []],
+    [[], [], [], [], [], [], []],
+    [[], ['X'], ['X'], ['X'], [], [], ['X']],
 ]
 
 print(current_test_board)
-horizontal_vertical_win('X', current_test_board)
+horizontal_win('X', current_test_board)
 # print(play_piece(5, 'X', current_board))
 # print(play_piece(5, 'X', current_board))
 # print(play_piece(5, '0', current_board))
