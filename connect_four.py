@@ -128,6 +128,25 @@ def vertical_win(player_piece, board):
         print("You won!")
 
 
+def diagonal_win(player_piece, board):
+    win_char = ''
+    num_columns = len(board[0])
+    num_rows = len(board)
+    win_pattern_down_right = ('Y' + ('N' * num_columns)) * 3 + 'Y'
+    win_pattern_up_right = ('Y' + ('N' * (num_rows - 1))) * 3 + 'Y'
+    for row in board:
+        for column in row:
+            if player_piece in column:
+                win_char += 'Y'
+            else:
+                win_char += 'N'
+    if (win_pattern_down_right in win_char) or (win_pattern_up_right in win_char):
+        print("You won!")
+    print(win_char)
+    # print(win_pattern)
+
+
+
 # Playing a player piece in column
 player_column_choice = 5
 player_piece_choice = 'W'
@@ -146,16 +165,17 @@ create_board(top_edge, non_interactable_row, interactable_row, num_columns)
 
 current_test_board = [
     [[], [], [], [], [], [], []],
+    [[], [], [], [], [], [], []],
     [[], [], ['X'], [], [], [], []],
-    [[], [], ['X'], [], ['X'], [], []],
-    [[], [], ['O'], [], ['X'], [], []],
-    [[], [], ['X'], [], ['X'], [], []],
-    [[], [], ['X'], [], ['X'], [], []],
+    [[], [], [], ['X'], [], [], []],
+    [[], [], [], [], ['X'], [], []],
+    [[], [], [], [], [], ['X'], []],
 ]
 
 print(current_test_board)
 # horizontal_win('X', current_test_board)
-vertical_win('X', current_test_board)
+# vertical_win('X', current_test_board)
+diagonal_win('X', current_test_board)
 # print(play_piece(5, 'X', current_board))
 # print(play_piece(5, 'X', current_board))
 # print(play_piece(5, '0', current_board))
