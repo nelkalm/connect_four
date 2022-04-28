@@ -108,6 +108,25 @@ def horizontal_win(player_piece, board):
         print("You won!")
 
 
+def vertical_win(player_piece, board):
+    row_win_list = list()
+    column_win_list = list()
+    for row_number, row_data in enumerate(board):
+        for column_number, column_data in enumerate(row_data):
+            if player_piece in column_data:
+                row_win_list.append(row_number)
+                column_win_list.append(column_number)
+
+    initial_num = 1
+    match = 0
+    for number in row_win_list:
+        diff = number - initial_num
+        if diff == 1:
+            match += 1
+        initial_num = number
+    if match == 4:
+        print("You won!")
+
 
 # Playing a player piece in column
 player_column_choice = 5
@@ -127,15 +146,16 @@ create_board(top_edge, non_interactable_row, interactable_row, num_columns)
 
 current_test_board = [
     [[], [], [], [], [], [], []],
-    [[], [], [], [], [], [], []],
-    [[], [], [], [], [], [], []],
-    [[], [], [], [], [], [], []],
-    [[], [], [], [], [], [], []],
-    [[], ['X'], ['X'], ['X'], [], [], ['X']],
+    [[], [], ['X'], [], [], [], []],
+    [[], [], ['X'], [], ['X'], [], []],
+    [[], [], ['O'], [], ['X'], [], []],
+    [[], [], ['X'], [], ['X'], [], []],
+    [[], [], ['X'], [], ['X'], [], []],
 ]
 
 print(current_test_board)
-horizontal_win('X', current_test_board)
+# horizontal_win('X', current_test_board)
+vertical_win('X', current_test_board)
 # print(play_piece(5, 'X', current_board))
 # print(play_piece(5, 'X', current_board))
 # print(play_piece(5, '0', current_board))
