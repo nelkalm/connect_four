@@ -67,7 +67,7 @@ def create_nonoutput(num_columns, num_rows):
     return board
 
 
-current_board = create_nonoutput(num_columns, num_rows)
+# current_board = create_nonoutput(num_columns, num_rows)
 
 
 def play_piece(column_choice, player_piece, board):
@@ -88,6 +88,25 @@ def play_piece(column_choice, player_piece, board):
     return board
 
 
+def no_available_moves(board):
+    top_col_string = ''
+    for element in board[0]:
+        top_col_string += element
+    if len(top_col_string) == len(board[0]):
+        print("No available moves.")
+
+
+def horizontal_vertical_win(player_piece, board):
+    match = 0
+    for row in board:
+        for column in row:
+            if column == player_piece:
+                match += 1
+            if match == 4:
+                break
+    print("you won!")
+
+
 # Playing a player piece in column
 player_column_choice = 5
 player_piece_choice = 'W'
@@ -103,7 +122,18 @@ create_column_labels(num_columns)
 create_board(top_edge, non_interactable_row, interactable_row, num_columns)
 
 # print(create_nonoutput(7, 6))
-print(current_board)
+
+current_test_board = [
+    [[], [], [], [], [], [], []],
+    [[], [], [], [], [], [], []],
+    [[], ['X'], [], [], [], [], []],
+    [[], ['X'], [], [], [], [], []],
+    [[], ['X'], [], [], [], [], []],
+    [[], ['X'], [], [], [], [], []],
+]
+
+print(current_test_board)
+horizontal_vertical_win('X', current_test_board)
 # print(play_piece(5, 'X', current_board))
 # print(play_piece(5, 'X', current_board))
 # print(play_piece(5, '0', current_board))
@@ -112,3 +142,4 @@ print(current_board)
 # print(play_piece(5, 'X', current_board))
 # print(play_piece(5, 'X', current_board))
 # print(play_piece(5, 'X', current_board))
+
